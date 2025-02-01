@@ -1,9 +1,10 @@
-"use client";
+'use client';
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Car, BadgeCheck, Shield, Clock, Zap } from "lucide-react";
+import Navbar from "@/components/Navbar"; // Impor komponen Navbar
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   const vehicles = [
@@ -21,13 +22,13 @@ export default function Home() {
           content="Pengalaman rental mobil modern dengan sentuhan digital"
         />
       </Head>
-
+      <Navbar /> {/* Tambahkan Navbar di sini */}
+      {/* Hero Section */}
       {/* Floating Background Elements */}
       <div className="fixed inset-0 overflow-hidden">
         <div className="absolute w-[800px] h-[800px] -top-96 -left-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute w-[600px] h-[600px] -bottom-64 -right-64 bg-secondary/10 rounded-full blur-3xl" />
       </div>
-
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 relative py-9">
         <div className="max-w-6xl mx-auto text-center">
@@ -36,7 +37,6 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
               Drive Different
             </h1>
@@ -80,7 +80,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Features Section */}
       <section className="py-20 px-4 relative">
         <div className="max-w-6xl mx-auto">
@@ -125,7 +124,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Interactive Pricing */}
       <section className="py-20 px-4 relative">
         <div className="max-w-4xl mx-auto text-center">
@@ -185,7 +183,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Animated CTA */}
       <section className="py-20 px-4 relative">
         <div className="max-w-4xl mx-auto text-center">
