@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -24,13 +24,7 @@ export default function Home() {
       </Head>
       <Navbar /> {/* Tambahkan Navbar di sini */}
       {/* Hero Section */}
-      {/* Floating Background Elements */}
-      <div className="fixed inset-0 overflow-hidden">
-        <div className="absolute w-[800px] h-[800px] -top-96 -left-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute w-[600px] h-[600px] -bottom-64 -right-64 bg-secondary/10 rounded-full blur-3xl" />
-      </div>
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-4 relative py-9">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 relative py-9">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -58,7 +52,7 @@ export default function Home() {
           </motion.div>
 
           {/* Floating Cars Preview */}
-          <div className="mt-24 grid grid-cols-3 gap-8 opacity-90">
+          <div className="mt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 opacity-90">
             {vehicles.map((vehicle, index) => (
               <motion.div
                 key={index}
@@ -81,7 +75,7 @@ export default function Home() {
         </div>
       </section>
       {/* Features Section */}
-      <section className="py-20 px-4 relative">
+      <section id="features" className="py-20 px-4 relative">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
             <motion.div
@@ -125,7 +119,7 @@ export default function Home() {
         </div>
       </section>
       {/* Interactive Pricing */}
-      <section className="py-20 px-4 relative">
+      <section id="pricing" className="py-20 px-4 relative">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-block bg-background/80 backdrop-blur-lg px-8 py-4 rounded-full shadow-lg mb-8">
             <span className="text-primary font-medium">Harga Transparan</span>
