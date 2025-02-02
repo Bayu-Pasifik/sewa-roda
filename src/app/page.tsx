@@ -3,15 +3,39 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Car, BadgeCheck, Shield, Clock, Zap } from "lucide-react";
-import Navbar from "@/components/Navbar"; // Impor komponen Navbar
+import Navbar from "@/components/Navbar";
+import { useRouter } from 'next/navigation';
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
+  const router = useRouter();
+  // Simulasi status login (ganti dengan autentikasi sebenarnya)
+  const isLoggedIn = false; 
+
   const vehicles = [
     { type: "Hatchback", price: "250k", image: "/images/car(1).png" },
     { type: "SUV", price: "450k", image: "/images/car(2).png" },
     { type: "MVP", price: "600k", image: "/images/car(3).png" },
   ];
+
+  // Handler untuk tombol "Mulai Sekarang"
+  const handleMulaiSekarang = () => {
+    if (isLoggedIn) {
+      // Jika sudah login, arahkan ke halaman pemesanan (booking)
+      router.push("/booking");
+    } else {
+      // Jika belum login, arahkan ke halaman signup atau login
+      router.push("/signup");
+    }
+  };
+
+  // Handler untuk tombol "Jelajahi Fitur"
+  const handleJelajahiFitur = () => {
+    const featuresSection = document.getElementById("features");
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <>
@@ -22,9 +46,12 @@ export default function Home() {
           content="Pengalaman rental mobil modern dengan sentuhan digital"
         />
       </Head>
-      <Navbar /> {/* Tambahkan Navbar di sini */}
+      <Navbar />
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-4 relative py-9">
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center px-4 relative py-9"
+      >
         <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -34,18 +61,25 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
               Drive Different
             </h1>
-
             <p className="text-xl text-foreground/80 max-w-2xl mx-auto mb-8">
               Temukan sensasi berkendara premium dengan teknologi terkini dan
               pelayanan personal
             </p>
-
             <div className="flex gap-4 justify-center">
-              <Button size="lg" className="rounded-full px-8 space-x-2">
+              <Button
+                size="lg"
+                className="rounded-full px-8 space-x-2"
+                onClick={handleMulaiSekarang}
+              >
                 <Zap className="w-4 h-4" />
                 <span>Mulai Sekarang</span>
               </Button>
-              <Button variant="outline" size="lg" className="rounded-full px-8">
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-full px-8"
+                onClick={handleJelajahiFitur}
+              >
                 Jelajahi Fitur
               </Button>
             </div>
@@ -74,6 +108,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Features Section */}
       <section id="features" className="py-20 px-4 relative">
         <div className="max-w-6xl mx-auto">
@@ -118,13 +153,13 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Interactive Pricing */}
       <section id="pricing" className="py-20 px-4 relative">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-block bg-background/80 backdrop-blur-lg px-8 py-4 rounded-full shadow-lg mb-8">
             <span className="text-primary font-medium">Harga Transparan</span>
           </div>
-
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
               {
@@ -135,20 +170,12 @@ export default function Home() {
               {
                 type: "Mingguan",
                 price: "1.4jt",
-                features: [
-                  "All in Harian",
-                  "Free Delivery",
-                  "Priority Support",
-                ],
+                features: ["All in Harian", "Free Delivery", "Priority Support"],
               },
               {
                 type: "Bulanan",
                 price: "4.5jt",
-                features: [
-                  "All in Mingguan",
-                  "Free Maintenance",
-                  "Layanan Premium",
-                ],
+                features: ["All in Mingguan", "Free Maintenance", "Layanan Premium"],
               },
             ].map((plan, index) => (
               <motion.div
@@ -157,15 +184,10 @@ export default function Home() {
                 className="bg-background/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border"
               >
                 <h3 className="text-2xl font-bold mb-4">{plan.type}</h3>
-                <div className="text-primary text-3xl font-bold mb-6">
-                  Rp{plan.price}
-                </div>
+                <div className="text-primary text-3xl font-bold mb-6">Rp{plan.price}</div>
                 <ul className="space-y-3 mb-6">
                   {plan.features.map((feature, i) => (
-                    <li
-                      key={i}
-                      className="text-foreground/80 flex items-center gap-2"
-                    >
+                    <li key={i} className="text-foreground/80 flex items-center gap-2">
                       <div className="w-2 h-2 bg-primary rounded-full" />
                       {feature}
                     </li>
@@ -177,6 +199,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Animated CTA */}
       <section className="py-20 px-4 relative">
         <div className="max-w-4xl mx-auto text-center">
@@ -186,9 +209,7 @@ export default function Home() {
             className="bg-gradient-to-r from-primary to-blue-600 p-1 rounded-2xl shadow-2xl"
           >
             <div className="bg-background rounded-xl p-12">
-              <h2 className="text-3xl font-bold mb-4">
-                Siap Memulai Petualangan?
-              </h2>
+              <h2 className="text-3xl font-bold mb-4">Siap Memulai Petualangan?</h2>
               <p className="text-foreground/80 mb-8">
                 Daftar sekarang dan dapatkan akses ke promo eksklusif
               </p>
@@ -196,11 +217,7 @@ export default function Home() {
                 <Button size="lg" className="rounded-full px-8">
                   Daftar Sekarang
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="rounded-full px-8"
-                >
+                <Button variant="outline" size="lg" className="rounded-full px-8">
                   Lihat FAQ
                 </Button>
               </div>
